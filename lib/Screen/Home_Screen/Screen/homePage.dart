@@ -1,6 +1,7 @@
 import 'package:chatapp/Components/sharedPreferences.dart';
 import 'package:chatapp/Constant/colors.dart';
 import 'package:chatapp/Screen/Chat_Screen/chatpage.dart';
+import 'package:chatapp/Service/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -42,7 +43,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: const Text('Your Friends List '),
-        actions: [],
+        actions: [
+          IconButton(
+              onPressed: () {
+                AuthService().signOut(context);
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: _buildUserList(),
     );

@@ -1,6 +1,7 @@
 import 'package:chatapp/Constant/image.dart';
 import 'package:chatapp/Screen/Login_Screen/Widgets/textfield.dart';
 import 'package:chatapp/Screen/Register_Screen/body.dart';
+import 'package:chatapp/Service/auth.dart';
 import 'package:chatapp/Widgets/sizebox.dart';
 import 'package:chatapp/Widgets/text.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,27 @@ class _BodyState extends State<Body> {
         TextSizeBox(),
         LoginTextfield(),
         TextSizeBox(),
+        InkWell(
+          onTap: () {
+            AuthService().loginwithgoogle(context);
+            //  SiginService().signInWithGoogle();
+          },
+          child: Card(
+            color: Colors.white,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: SizedBox(
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: Image.asset(
+                  "assets/images/googlelogo.png",
+                  height: 30,
+                ),
+              ),
+            ),
+          ),
+        ),
 
         ///TEXTFIELD WIDGET END
         InkWell(
