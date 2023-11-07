@@ -53,42 +53,52 @@ class _BodyState extends State<Body> {
           alignment: Alignment.bottomCenter,
           width: MediaQuery.of(context).size.width,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             width: MediaQuery.of(context).size.width,
-            color: Colors.grey[700],
-            child: Row(children: [
-              Expanded(
-                  child: TextFormField(
-                controller: messageController,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  hintText: "Send a message...",
-                  hintStyle: TextStyle(color: Colors.white, fontSize: 16),
-                  border: InputBorder.none,
-                ),
-              )),
-              const SizedBox(
-                width: 12,
-              ),
-              GestureDetector(
-                onTap: () {
-                  sendMessage();
-                },
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(30),
+            // color: Colors.black12, // You can adjust the color as needed
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5), // Shadow color
+                          offset: Offset(2, 2), // Shadow offset
+                          blurRadius: 5, // Shadow blur radius
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: TextFormField(
+                            controller: messageController,
+                            style: const TextStyle(color: Colors.black),
+                            decoration: const InputDecoration(
+                              hintText: "Type a message...",
+                              hintStyle:
+                                  TextStyle(color: Colors.grey, fontSize: 16),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.send, color: Colors.blue),
+                          onPressed: () {
+                            sendMessage();
+                          },
+                        ),
+                        const SizedBox(width: 10),
+                      ],
+                    ),
                   ),
-                  child: const Center(
-                      child: Icon(
-                    Icons.send,
-                    color: Colors.white,
-                  )),
                 ),
-              )
-            ]),
+              ],
+            ),
           ),
         )
       ],

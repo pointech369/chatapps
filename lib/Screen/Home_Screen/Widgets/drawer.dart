@@ -60,13 +60,13 @@ class _DrawersState extends State<Drawers> {
           Spacer(),
           Container(
             height: 180,
-            color: Colors.black26,
+            color: primaryColor.withOpacity(0.2),
             child: Column(
               children: [
                 Icon(
                   Icons.account_circle,
                   size: 150,
-                  color: Colors.blueGrey,
+                  color: primaryColor,
                 ),
                 Text(
                   name,
@@ -77,7 +77,10 @@ class _DrawersState extends State<Drawers> {
           ),
           Spacer(),
           ListTile(
-            leading: Icon(Icons.email),
+            leading: Icon(
+              Icons.email,
+              color: primaryColor,
+            ),
             title: Text("Email"),
             subtitle: Text(
               email,
@@ -86,7 +89,10 @@ class _DrawersState extends State<Drawers> {
           ),
           Spacer(),
           ListTile(
-            leading: Icon(Icons.menu_book),
+            leading: Icon(
+              Icons.menu_book,
+              color: primaryColor,
+            ),
             subtitle: Text("this is our...."),
             title: Text(
               "About",
@@ -95,7 +101,10 @@ class _DrawersState extends State<Drawers> {
           ),
           Spacer(),
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: Icon(
+              Icons.settings,
+              color: primaryColor,
+            ),
             subtitle: Text("Change your app setting"),
             title: Text(
               "Setting",
@@ -110,29 +119,53 @@ class _DrawersState extends State<Drawers> {
                 MaterialPageRoute(builder: (context) => HomePage()),
               );
             },
-            leading: Icon(Icons.call),
-            subtitle: Text("goooooooo"),
+            leading: Icon(
+              Icons.call,
+              color: primaryColor,
+            ),
+            subtitle: Text("Your Friends"),
             title: Text(
-              "Personal Chat",
+              "Invidual Chat",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          Spacer(),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => GroupChatHomeScreen()),
+              );
+            },
+            leading: Icon(
+              Icons.group_add_outlined,
+              color: primaryColor,
+            ),
+            subtitle: Text("Your Group"),
+            title: Text(
+              "Group Chat",
               style: TextStyle(color: Colors.black),
             ),
           ),
           Spacer(),
           SizedBox(
-            height: 200,
+            height: 100,
           ),
-          MaterialButton(
-            color: primaryColor,
-            onPressed: () {
-              authService.signOut(context);
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => loginScreen()),
-              );
-            },
-            child: Text(
-              "Logout",
-              style: TextStyle(color: Colors.white),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40),
+            child: MaterialButton(
+              color: primaryColor,
+              onPressed: () {
+                authService.signOut(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => loginScreen()),
+                );
+              },
+              child: Text(
+                "Logout",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
           Spacer(),

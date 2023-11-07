@@ -1,4 +1,5 @@
-import 'package:chatapp/Screen/Chat_Screen/body.dart';
+import 'package:chatapp/Constant/colors.dart';
+import 'package:chatapp/Screen/Chat_Screen/GroupChat_Screen/body.dart';
 import 'package:flutter/material.dart';
 
 class GroupTile extends StatefulWidget {
@@ -24,7 +25,7 @@ class _GroupTileState extends State<GroupTile> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ChatScreen(
+              builder: (context) => IndividualChatScreen(
                     groupId: widget.groupId,
                     groupName: widget.groupName,
                     userName: widget.userName,
@@ -32,6 +33,9 @@ class _GroupTileState extends State<GroupTile> {
         );
       },
       child: Container(
+        decoration: BoxDecoration(
+            color: primaryColor.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(20)),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
         child: ListTile(
           leading: CircleAvatar(

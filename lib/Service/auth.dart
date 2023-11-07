@@ -11,7 +11,7 @@ import 'database_Service.dart';
 
 class AuthService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   // login
   Future loginWithUserNameandPassword(String email, String password) async {
@@ -45,44 +45,39 @@ final GoogleSignIn _googleSignIn = GoogleSignIn();
       return e.message;
     }
   }
+
 //login with google
-Future loginwithgoogle(BuildContext context)async{
-   GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-  GoogleSignInAuthentication googleSignInAuthentication =
-  await googleSignInAccount!.authentication;
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleSignInAuthentication.accessToken,
-    idToken: googleSignInAuthentication.idToken,
-  );
-  UserCredential authResult = await firebaseAuth.signInWithCredential(credential);
-  if(authResult.additionalUserInfo!.isNewUser){
-  await DatabaseService(uid: authResult.user!.uid).savingUserData(authResult.user!.displayName!, authResult.user!.email!);
-  await SharedDataFunctions.saveUserLoggedInStatus(
-                              true);
-                          await SharedDataFunctions.saveUserEmailSF(authResult.user!.email!);
-                          await SharedDataFunctions.saveUserNameSF(
-                              authResult.user!.displayName!);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
-  }else{
-     QuerySnapshot snapshot = await DatabaseService(
-                                    uid: authResult.user!.uid)
-                                .gettingUserData(authResult.user!.email!);
-                            await SharedDataFunctions.saveUserLoggedInStatus(
-                                true);
-                            await SharedDataFunctions.saveUserEmailSF(
-                                authResult.user!.email!);
-                            await SharedDataFunctions.saveUserNameSF(
-                                snapshot.docs[0]['fullName']);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()),
-                            );
+  Future loginwithgoogle(BuildContext context) async {
+    GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+    GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount!.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
+    UserCredential authResult =
+        await firebaseAuth.signInWithCredential(credential);
+    if (authResult.additionalUserInfo!.isNewUser) {
+      await DatabaseService(uid: authResult.user!.uid).savingUserData(
+          authResult.user!.displayName!, authResult.user!.email!);
+      await SharedDataFunctions.saveUserLoggedInStatus(true);
+      await SharedDataFunctions.saveUserEmailSF(authResult.user!.email!);
+      await SharedDataFunctions.saveUserNameSF(authResult.user!.displayName!);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => GroupChatHomeScreen()));
+    } else {
+      QuerySnapshot snapshot = await DatabaseService(uid: authResult.user!.uid)
+          .gettingUserData(authResult.user!.email!);
+      await SharedDataFunctions.saveUserLoggedInStatus(true);
+      await SharedDataFunctions.saveUserEmailSF(authResult.user!.email!);
+      await SharedDataFunctions.saveUserNameSF(snapshot.docs[0]['fullName']);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    }
   }
-}
+
   // signout
   Future signOut(BuildContext context) async {
     try {
@@ -90,7 +85,12 @@ Future loginwithgoogle(BuildContext context)async{
       await SharedDataFunctions.saveUserEmailSF("");
       await SharedDataFunctions.saveUserNameSF("");
       await firebaseAuth.signOut();
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => loginScreen(),), (route) => false);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => loginScreen(),
+          ),
+          (route) => false);
     } catch (e) {
       return null;
     }

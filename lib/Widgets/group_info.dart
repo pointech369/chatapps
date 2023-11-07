@@ -1,7 +1,8 @@
-import 'package:chatapp/Screen/Home_Screen/Body.dart';
+import 'package:chatapp/Constant/colors.dart';
 import 'package:chatapp/Service/database_Service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:chatapp/Screen/Home_Screen/body.dart';
 
 class GroupInfo extends StatefulWidget {
   final String groupId;
@@ -50,7 +51,7 @@ class _GroupInfoState extends State<GroupInfo> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: primaryColor,
         title: const Text("Group Info"),
         actions: [
           IconButton(
@@ -86,7 +87,8 @@ class _GroupInfoState extends State<GroupInfo> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const HomeScreen()),
+                                      builder: (context) =>
+                                          GroupChatHomeScreen()),
                                 );
                               });
                             },

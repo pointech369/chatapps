@@ -1,4 +1,5 @@
 import 'package:chatapp/Screen/Home_Screen/Screen/homePage.dart';
+import 'package:chatapp/Screen/Welcome_Screen/Screen/welcomeScreen.dart';
 import 'package:chatapp/Service/database_Service.dart';
 import 'package:chatapp/Widgets/error.dart';
 import 'package:chatapp/Widgets/text.dart';
@@ -23,9 +24,9 @@ class _LoginTextfieldState extends State<LoginTextfield> {
   final _formKey = GlobalKey<FormState>();
 
   //
-  final email = TextEditingController(text: "kripask50@gmail.com");
+  final email = TextEditingController();
 
-  final password = TextEditingController(text: "Flutter1234");
+  final password = TextEditingController();
 
   bool _isLoading = false;
 
@@ -69,7 +70,7 @@ class _LoginTextfieldState extends State<LoginTextfield> {
                     controller: password,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Please Enter full name";
+                        return "Please Enter Password";
                       }
                       return null;
                     },
@@ -102,7 +103,7 @@ class _LoginTextfieldState extends State<LoginTextfield> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeScreen()),
+                                  builder: (context) => WelcomeScreen()),
                             );
                           } else {
                             showSnackbar(context, Colors.red, value);

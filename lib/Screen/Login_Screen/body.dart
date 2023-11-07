@@ -8,15 +8,15 @@ class loginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _scaffoldKey,
-        appBar: MyAppBar(
-          scaffoldKey: _scaffoldKey,
-        ),
+        // key: _scaffoldKey,
+        // appBar: MyAppBar(
+        //   scaffoldKey: _scaffoldKey,
+        // ),
         body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Body(),
-          ),
-        ));
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 40),
+        child: Body(),
+      ),
+    ));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:chatapp/Constant/colors.dart';
 import 'package:chatapp/Screen/Home_Screen/Screen/homePage.dart';
+import 'package:chatapp/Screen/Welcome_Screen/Screen/welcomeScreen.dart';
 import 'package:chatapp/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
         // appBarTheme: AppBarTheme(color: ksprimaryColor, elevation: 10),
         scaffoldBackgroundColor: kbgColor,
       ),
-      home: _isSignedIn ? HomeScreen() : loginScreen(),
+      home: _isSignedIn ? WelcomeScreen() : loginScreen(),
     );
   }
 }

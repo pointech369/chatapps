@@ -1,13 +1,14 @@
 import 'package:chatapp/Components/sharedPreferences.dart';
 import 'package:chatapp/Constant/colors.dart';
-import 'package:chatapp/Screen/Chat_Screen/chatpage.dart';
+import 'package:chatapp/Screen/Chat_Screen/IndividualChat_Screen/Screen/chatpage.dart';
+import 'package:chatapp/Screen/Home_Screen/Widgets/drawer.dart';
+import 'package:chatapp/Widgets/appbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,32 +18,34 @@ class _HomePageState extends State<HomePage> {
   String email = "";
   String userName = "";
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  @override
-  void initState() {
-    super.initState();
-    userData();
-  }
 
-  userData() async {
-    await SharedDataFunctions.getUserEmailFromSF().then((value) {
-      setState(() {
-        email = value!;
-      });
-    });
-    await SharedDataFunctions.getUserNameFromSF().then((val) {
-      setState(() {
-        userName = val!;
-      });
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   userData();
+  // }
+
+  // userData() async {
+  //   await SharedDataFunctions.getUserEmailFromSF().then((value) {
+  //     setState(() {
+  //       email = value!;
+  //     });
+  //   });
+  //   await SharedDataFunctions.getUserNameFromSF().then((val) {
+  //     setState(() {
+  //       userName = val!;
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        title: const Text('Your Friends List '),
-        actions: [],
+      drawer: Drawers(),
+      key: _scaffoldKey,
+      appBar: MyAppBar(
+        scaffoldKey: _scaffoldKey,
       ),
       body: _buildUserList(),
     );
@@ -58,8 +61,7 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Text('Loading...');
         }
-        final userCount =
-            snapshot.data?.docs.length; // Calculate the user count
+        final userCount = snapshot.data?.docs.length;
 
         return ListView(
           children: snapshot.data!.docs
@@ -73,23 +75,23 @@ class _HomePageState extends State<HomePage> {
   Widget _buildUserListItem(DocumentSnapshot document, int userCount) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
-    // Check if the 'name' field is not null
-    String userName =
-        data['name'] ?? ''; // Use an empty string if 'name' is null
+    String userName = data['name'] ?? '';
 
     if (_auth.currentUser!.email != data['email']) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          color: Colors.black12,
+          decoration: BoxDecoration(
+            color: primaryColor.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor:
-                  Colors.blue, // Set the background color of the avatar
+              backgroundColor: Colors.blue,
               child: Text(
-                userCount.toString(), // Display the user count as text
+                userCount.toString(),
                 style: TextStyle(
-                  color: Colors.white, // Set the text color
+                  color: Colors.white,
                 ),
               ),
             ),

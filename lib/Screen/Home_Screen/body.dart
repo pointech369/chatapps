@@ -1,4 +1,5 @@
 import 'package:chatapp/Components/sharedPreferences.dart';
+import 'package:chatapp/Constant/colors.dart';
 import 'package:chatapp/Screen/Home_Screen/Widgets/drawer.dart';
 import 'package:chatapp/Screen/Search_Screen/body.dart';
 import 'package:chatapp/Service/auth.dart';
@@ -10,14 +11,14 @@ import 'package:flutter/material.dart';
 
 import '../../Widgets/appbar.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class GroupChatHomeScreen extends StatefulWidget {
+  const GroupChatHomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<GroupChatHomeScreen> createState() => _GroupChatHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
   String userName = "";
   String email = "";
   AuthService authService = AuthService();
@@ -102,8 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   _isLoading == true
                       ? Center(
-                          child: CircularProgressIndicator(
-                              color: Theme.of(context).primaryColor),
+                          child: CircularProgressIndicator(color: primaryColor),
                         )
                       : TextField(
                           onChanged: (val) {
@@ -177,10 +177,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: snapshot.data['groups'].length,
                 itemBuilder: (context, index) {
                   int reverseIndex = snapshot.data['groups'].length - index - 1;
-                  return GroupTile(
-                      groupId: getId(snapshot.data['groups'][reverseIndex]),
-                      groupName: getName(snapshot.data['groups'][reverseIndex]),
-                      userName: snapshot.data['fullName']);
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GroupTile(
+                        groupId: getId(snapshot.data['groups'][reverseIndex]),
+                        groupName:
+                            getName(snapshot.data['groups'][reverseIndex]),
+                        userName: snapshot.data['fullName']),
+                  );
                 },
               );
             } else {
@@ -220,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 20,
           ),
           const Text(
-            "You've not joined any groups, tap on the add icon to create a group or also search from top search button.",
+            "Create a group or also search from top search button.",
             textAlign: TextAlign.center,
           )
         ],

@@ -1,6 +1,6 @@
 import 'package:chatapp/Components/sharedPreferences.dart';
 import 'package:chatapp/Constant/colors.dart';
-import 'package:chatapp/Screen/Chat_Screen/body.dart';
+import 'package:chatapp/Screen/Chat_Screen/GroupChat_Screen/body.dart';
 import 'package:chatapp/Service/database_Service.dart';
 import 'package:chatapp/Widgets/error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -54,7 +54,7 @@ class _SearchPageState extends State<SearchPage> {
       body: Column(
         children: [
           Container(
-            color: Theme.of(context).primaryColor,
+            color: primaryColor,
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Row(
               children: [
@@ -152,7 +152,7 @@ class _SearchPageState extends State<SearchPage> {
       contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       leading: CircleAvatar(
         radius: 30,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: primaryColor,
         child: Text(
           groupName.substring(0, 1).toUpperCase(),
           style: const TextStyle(color: Colors.white),
@@ -174,7 +174,7 @@ class _SearchPageState extends State<SearchPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ChatScreen(
+                    builder: (context) => IndividualChatScreen(
                         groupId: groupId,
                         groupName: groupName,
                         userName: userName)),

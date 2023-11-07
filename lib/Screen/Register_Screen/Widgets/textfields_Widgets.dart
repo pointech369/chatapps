@@ -1,6 +1,7 @@
 import 'package:chatapp/Components/sharedPreferences.dart';
 import 'package:chatapp/Screen/Home_Screen/body.dart';
 import 'package:chatapp/Screen/Register_Screen/Widgets/privacy_policy_Widget.dart';
+import 'package:chatapp/Screen/Welcome_Screen/Screen/welcomeScreen.dart';
 import 'package:chatapp/Widgets/error.dart';
 import 'package:chatapp/Widgets/sizebox.dart';
 import 'package:chatapp/Widgets/text.dart';
@@ -18,11 +19,11 @@ class TextfieldWidget extends StatefulWidget {
 class _TextfieldWidgetState extends State<TextfieldWidget> {
   final _formKey = GlobalKey<FormState>();
 
-  final fullName = TextEditingController(text: "kripas");
+  final fullName = TextEditingController();
 
-  final email = TextEditingController(text: "kripask50@gmail.com");
+  final email = TextEditingController();
 
-  final password = TextEditingController(text: "Flutter1234");
+  final password = TextEditingController();
   AuthService authService = AuthService();
 
   bool _isLoading = false;
@@ -92,7 +93,7 @@ class _TextfieldWidgetState extends State<TextfieldWidget> {
                   text: 'Confirm Password',
                 ),
                 TextFormField(
-                    controller: password,
+                    // controller: password,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Please Enter Confirm Password";
@@ -124,7 +125,7 @@ class _TextfieldWidgetState extends State<TextfieldWidget> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeScreen()),
+                                builder: (context) => WelcomeScreen()),
                           );
                         } else {
                           showSnackbar(context, Colors.red, value);
