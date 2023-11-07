@@ -57,7 +57,6 @@ class _DrawersState extends State<Drawers> {
     return Drawer(
       child: ListView(
         children: [
-          Spacer(),
           Container(
             height: 180,
             color: primaryColor.withOpacity(0.2),
@@ -75,7 +74,6 @@ class _DrawersState extends State<Drawers> {
               ],
             ),
           ),
-          Spacer(),
           ListTile(
             leading: Icon(
               Icons.email,
@@ -87,7 +85,6 @@ class _DrawersState extends State<Drawers> {
               style: TextStyle(color: Colors.black),
             ),
           ),
-          Spacer(),
           ListTile(
             leading: Icon(
               Icons.menu_book,
@@ -99,7 +96,6 @@ class _DrawersState extends State<Drawers> {
               style: TextStyle(color: Colors.black),
             ),
           ),
-          Spacer(),
           ListTile(
             leading: Icon(
               Icons.settings,
@@ -111,7 +107,6 @@ class _DrawersState extends State<Drawers> {
               style: TextStyle(color: Colors.black),
             ),
           ),
-          Spacer(),
           ListTile(
             onTap: () {
               Navigator.push(
@@ -129,7 +124,6 @@ class _DrawersState extends State<Drawers> {
               style: TextStyle(color: Colors.black),
             ),
           ),
-          Spacer(),
           ListTile(
             onTap: () {
               Navigator.push(
@@ -147,9 +141,8 @@ class _DrawersState extends State<Drawers> {
               style: TextStyle(color: Colors.black),
             ),
           ),
-          Spacer(),
           SizedBox(
-            height: 100,
+            height: 30,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 40, right: 40),
@@ -168,7 +161,6 @@ class _DrawersState extends State<Drawers> {
               ),
             ),
           ),
-          Spacer(),
         ],
       ),
     );
