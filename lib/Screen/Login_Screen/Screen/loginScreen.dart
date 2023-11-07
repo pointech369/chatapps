@@ -34,23 +34,29 @@ class _BodyState extends State<Body> {
         TextSizeBox(),
         LoginTextfield(),
         TextSizeBox(),
-InkWell(
-           onTap: (){
+
+        InkWell(
+          onTap: () {
             AuthService().loginwithgoogle(context);
             //  SiginService().signInWithGoogle();
-             },
-           child: Card(
-             color: Colors.white,
-             shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(10)),
-             child: SizedBox(
-               height: 50,
-             width: MediaQuery.of(context).size.width,
-               child: Center(
-                 child:Image.asset("assets/images/googlelogo.png",height: 30,) ,
-               ),
-             ),
-           ),
-         ),
+          },
+          child: Card(
+            color: Colors.white,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: SizedBox(
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: Image.asset(
+                  "assets/images/googlelogo.png",
+                  height: 30,
+                ),
+              ),
+            ),
+          ),
+        ),
+
         ///TEXTFIELD WIDGET END
         InkWell(
             onTap: () {
