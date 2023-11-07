@@ -42,8 +42,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         iconTheme: IconThemeData(),
+      
         // appBarTheme: AppBarTheme(color: ksprimaryColor, elevation: 10),
         scaffoldBackgroundColor: kbgColor,
       ),

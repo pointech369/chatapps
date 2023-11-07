@@ -1,4 +1,5 @@
 import 'package:chatapp/Screen/Chat_Screen/chatpage.dart';
+import 'package:chatapp/Service/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -21,7 +22,11 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text('Home Page'),
-        actions: [],
+        actions: [
+          IconButton(onPressed: (){
+            AuthService().signOut(context);
+          }, icon: Icon(Icons.logout))
+        ],
       ),
       body: _buildUserList(),
     );
