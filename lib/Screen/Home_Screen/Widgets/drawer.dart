@@ -124,7 +124,7 @@ class _DrawersState extends State<Drawers> {
           MaterialButton(
             color: primaryColor,
             onPressed: () {
-              authService.signOut();
+              authService.signOut(context);
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => loginScreen()),
